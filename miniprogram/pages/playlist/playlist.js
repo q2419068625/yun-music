@@ -24,7 +24,6 @@ Page({
       {"_id":"08560c9e5d0829820362a79f4b049d2d","alg":"cityLevel_unknow","name":"「乐队的夏天」参赛歌曲合集丨EP04更新","highQuality":false,"picUrl":"http://p2.music.126.net/2WE5C2EypEwLJd2qXFd4cw==/109951164086686815.jpg","trackCount":158.0,"createTime":{"$date":"2019-06-18T00:00:02.553Z"},"copywriter":"热门推荐","playCount":1.5742008e+06,"canDislike":true,"id":2.79477263e+09,"type":0.0}
     ]
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
