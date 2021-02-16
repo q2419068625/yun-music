@@ -4,13 +4,14 @@ const cloud = require('wx-server-sdk')
 cloud.init()
 
 const TcbRouter = require('tcb-router')
-
+const rp = require('request-promise')
+const BASE_URL = 'http://musicapi.leanapp.cn'
 // 云函数入口函数
 exports.main = async (event, context) => {
   const app = new TcbRouter({
     event
   })
-
+  // 获取歌单列表
   app.router('playlist', async (ctx, next) => {
     ctx.body = await cloud.database().collection('playlist')
       .skip(event.start).limit(event.count)
@@ -20,7 +21,13 @@ exports.main = async (event, context) => {
         return res
       })
   })
-
+  // 获取歌单详情
+  app.router('musiclist', async(ctx, next) => {
+    ctx.body = await rp.get(BASE_URL+'/playlist/detail?id=' + parseInt(event.playlistId))
+    .then(res => {
+      return JSON.parse(res)
+    })
+  })
   return app.serve()
 
 }
