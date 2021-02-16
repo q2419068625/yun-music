@@ -1,11 +1,17 @@
 // pages/player/player.js
+let musiclist = []
+//正在播放歌曲的index
+let nowPlayingIndex = 0
+// 获取全局唯一的背景音频管理器
+const backgroundAudioManger = wx.getBackgroundAudioManager()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    picUrl: '',
+    isPlaying: false //false 表示不播放， true表示正在播放
   },
 
   /**
@@ -13,54 +19,75 @@ Page({
    */
   onLoad: function (options) {
     console.log(options);
-  },
+    nowPlayingIndex = options.index
+    musiclist = wx.getStorageSync('musiclist')
+    this._loadMusicDetail(options.musicid)
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
 
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+  _loadMusicDetail(musicId) {
+    backgroundAudioManger.stop()
+    let music = musiclist[nowPlayingIndex]
+    console.log(music);
+    wx.setNavigationBarTitle({
+      title: music.name,
+    })
+    this.setData({
+      picUrl: music.al.picUrl,
+      isPlaying:false
+    })
+    wx.showLoading({
+      title: '歌曲加载中',
+    })
+
+    wx.cloud.callFunction({
+      name:'music',
+      data:{
+        musicId,
+        $url:'musicUrl'
+      }
+    }).then(res => {
+      console.log(JSON.parse(res.result));
+      let result = JSON.parse(res.result)
+      backgroundAudioManger.src = result.data[0].url
+      backgroundAudioManger.title = music.name
+      backgroundAudioManger.coverImgUrl = music.al.picUrl
+      backgroundAudioManger.singer = music.ar[0].name
+      backgroundAudioManger.epname = music.al.name
+
+      this.setData({
+        isPlaying: true
+      })
+      wx.hideLoading()
+    })
 
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  togglePlaying() {
+    //正在播放
+    if(this.data.isPlaying) {
+      backgroundAudioManger.pause()
+    }else {
+      backgroundAudioManger.play()
+    }
+    this.setData({
+      isPlaying: !this.data.isPlaying
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  //上一首
+  onPrev() {
+    nowPlayingIndex--
+    if(nowPlayingIndex < 0) {
+      nowPlayingIndex = musiclist.length - 1
+    }
+    this._loadMusicDetail(musiclist[nowPlayingIndex].id)
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  //下一首
+  onNext() {
+    nowPlayingIndex++
+    if(nowPlayingIndex === musiclist.length) {
+      nowPlayingIndex = 0
+    }
+    this._loadMusicDetail(musiclist[nowPlayingIndex].id)
   }
 })

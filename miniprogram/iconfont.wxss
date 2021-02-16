@@ -1,0 +1,32 @@
+@font-face {font-family: "iconfont";
+  src: url('//at.alicdn.com/t/font_2374469_sr50y6h55s.eot?t=1613472070059'); /* IE9 */
+  src: url('//at.alicdn.com/t/font_2374469_sr50y6h55s.eot?t=1613472070059#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAPIAAsAAAAACIgAAAN6AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDKgqEFINVATYCJAMUCwwABCAFhG0HYhtzBxEVlP1kPxJs28jpjn5GldBFOjOUHp5H//pOcvPeZJMFVX2rWlCdOL9cmJUq0BXdzcxvgAACsdtP94ytOISKUF2S89SzbGfy+rrSy0sZ53EapRDyC/n/53BpmzbY/JZFkuEc0xb1AswWUEBjTI+s9OjoQPxAN8Z8SBNudoldQ6DW9eJtKMDRlM6okrIufbAYokUKUFMmjh+J7RkwKxSFVYczOw1qJQFWL9K3gRXl99VXkpQFTSBEK3uMKx1DwYe0j9ckWhE1pAiEp7MBxj4QoDNgQE2adYxB6kRnBOflGjIAG4/T8CH9w5CP1yoqCJcmepRxFocDBAP/eBpUSFRaGYACTBr4kJbaEF6kEAVzyiHIgoKP15Jo4DPtBAdUA1YC74jwrbELRnllgsZIdRw99/HjPk+e9H32rP/Tp7NW1q/idX/Q48eD2LSvXv8N5XX7rd+7HpvktRuc/oq5etT4xbXHrI3WGbvOL9mggvL1I4bj6wXr1w8fOWLY4rWYKOnqjT+pY9z6kcRR26yrbi6dTphfv8wJueVlkrbK9668Qd+8qZFuCA8lPOrd1esc/7h/7OnGpxn58TjN/uafkVjMnJFbzxk5y1X+b/J2efRQIt0xPOSHi3Q7LzRLLowWnl+YH80nQ3ffXududoodM7/xhrobGDPGuoRP84nE2Dl6Vkpk2jwuo6ZF/A+X5n6wsBtcjW1kS4vbpf829jW2FonUI1I6ZQyzAKh4IkekE1ScF2sLAOSCPln+hQIUbOk19d/wajn/rTcAvO55sRQCFecNaoK/TigW/sdCYYvxxZExMG5jKnCdAW07ITT8peL/NgM1eXsaVR1xKSgsdVrQRGgCgqU10mA7Q4AnBUIs+eDoBD3e79Ui5tQqAR19AJTqvqBVdQ5EdT+kwf5BoK5/CFVvDk6/ap3otc3uigUzxRLyN9iCe1qz7qryM5qxzaQrLql3FGfDEHrBMB1jj3KKNe5hIlUCEu7gBPdh2zIMwjUW6lWqw9H3ae5NXsHdZKeYQBmFSiD3BqwC61HeWe1Gnz9DxqiVkZWmHvsdEo4dHoQ8gQAZK3pR01sZ7zwYEaWI5xHBOuCENtTGCQaG+Wk1VFCeSiE2OPKpHUkV3uVV3Xc8ADjRmUFaiTIqUCHhmbLerOdknyXWm4Oretq3vWwek2rMcrr3L5vZ+skEAAA=') format('woff2'),
+  url('//at.alicdn.com/t/font_2374469_sr50y6h55s.woff?t=1613472070059') format('woff'),
+  url('//at.alicdn.com/t/font_2374469_sr50y6h55s.ttf?t=1613472070059') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('//at.alicdn.com/t/font_2374469_sr50y6h55s.svg?t=1613472070059#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-bofang:before {
+  content: "\e65c";
+}
+
+.icon-zanting:before {
+  content: "\e7c7";
+}
+
+.icon-shangyishou_huaban:before {
+  content: "\e636";
+}
+
+.icon-xiayishou_huaban:before {
+  content: "\e637";
+}

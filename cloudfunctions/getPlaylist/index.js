@@ -6,7 +6,7 @@ const db = cloud.database()
 
 const rp = require('request-promise');
 
-const URL = 'http://musicapi.leanapp.cn/top/playlist/highquality'
+const URL = 'https://autumnfish.cn/top/playlist/highquality'
 
 const playlistCollection = db.collection('playlist')
 const MAX_LIMIT = 100
