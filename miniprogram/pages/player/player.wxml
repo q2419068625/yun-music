@@ -8,7 +8,7 @@
   </view> 
   <!-- 进度条 -->
   <view class="progress-bar">
-    <x-propress-bar></x-propress-bar>
+    <x-propress-bar bind:musicEnd="onNext"></x-propress-bar>
   </view>
   <!-- 控制面板 -->
   <view class="control">
