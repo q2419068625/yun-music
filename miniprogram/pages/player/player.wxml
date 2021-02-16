@@ -5,8 +5,11 @@
   <!-- 封面信息 -->
   <view class="player-disc {{isPlaying?'play': ''}}" bindtap="onChangeLyricShow" hidden="{{isLyricShow}}">
     <image class="player-img rotation {{isPlaying?'':'rotation-paused'}}" src="{{picUrl}}"></image>
+  </view> 
+  <!-- 进度条 -->
+  <view class="progress-bar">
+    <x-propress-bar></x-propress-bar>
   </view>
-
   <!-- 控制面板 -->
   <view class="control">
     <text class="iconfont icon-shangyishou_huaban" bindtap="onPrev"></text>

@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "x-propress-bar":"/components/propress-bar/propress-bar"
+  }
 }
