@@ -8,10 +8,10 @@
   </view> 
 
   <!-- 歌词 -->
-  <x-lyric lyric="{{lyric}}" isLyricShow="{{!isLyricShow}}" bindtap="onChangeLyricShow"></x-lyric>
+  <x-lyric class="lyric" lyric="{{lyric}}" isLyricShow="{{!isLyricShow}}" bindtap="onChangeLyricShow"></x-lyric>
   <!-- 进度条 -->
   <view class="progress-bar">
-    <x-propress-bar bind:musicEnd="onNext"></x-propress-bar>
+    <x-propress-bar bind:musicEnd="onNext" bind:timeUpdate="timeUpdate"></x-propress-bar>
   </view>
   <!-- 控制面板 -->
   <view class="control">

@@ -116,5 +116,9 @@ Page({
     this.setData({
       isLyricShow: !this.data.isLyricShow
     })
+  },
+  // 歌词联动
+  timeUpdate(event) {
+    this.selectComponent('.lyric').update(event.detail.currentTime)
   }
 })
