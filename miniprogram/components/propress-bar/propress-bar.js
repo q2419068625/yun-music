@@ -35,7 +35,7 @@ Component({
    */
   methods: {
     onChange(event) {
-      console.log(event);
+      // console.log(event);
       if(event.detail.source == 'touch') {
         this.data.progress = event.detail.x / (movableAreaWidth - movableViewWidth ) * 100,
         this.data.movableDis = event.detail.x

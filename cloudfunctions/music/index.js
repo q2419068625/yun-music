@@ -29,9 +29,16 @@ exports.main = async (event, context) => {
       return JSON.parse(res)
     })
   })
-
+  // 获取歌曲播放链接
   app.router('musicUrl', async(ctx, next) => {
     ctx.body = await rp.get(BASE_URL + `/song/url?id=${event.musicId}`)
+    .then(res => {
+      return res
+    })
+  })
+  // 获取歌词
+  app.router('lyric', async(ctx, next) => {
+    ctx.body = await rp.get(BASE_URL + `/lyric?id=${event.musicId}`)
     .then(res => {
       return res
     })
