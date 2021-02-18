@@ -70,6 +70,12 @@
           "pathName": "pages/player/player",
           "query": "musicid= 27008145,index=0",
           "scene": null
+        },
+        {
+          "name": "pages/blog/blog",
+          "pathName": "pages/blog/blog",
+          "query": "",
+          "scene": null
         }
       ]
     }

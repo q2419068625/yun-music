@@ -5,6 +5,7 @@
     "pages/profile/profile",
     "pages/musiclist/musiclist",
     "pages/player/player",
+    "pages/blog-edit/blog-edit",
     "components/playlist/playlist"
   ],
   "requiredBackgroundModes": ["audio", "location"],
@@ -39,6 +40,5 @@
       }
     ]
   },
-  "sitemapLocation": "sitemap.json",
-  "style": "v2"
+  "sitemapLocation": "sitemap.json"
 }
