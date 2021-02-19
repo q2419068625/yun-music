@@ -1,5 +1,6 @@
  //输入文字最大的个数
 const MAX_WORDS_NUM = 140  
+const MAX_IMG_NUM = 9
 Page({
 
   /**
@@ -7,7 +8,9 @@ Page({
    */
   data: {
     wordsNum: 0,  //输入文字个数
-    footerBottom:0, // 距离底部的距离
+    footerBottom: 0, // 距离底部的距离
+    images: [],
+    selectPhoto: true,  //添加图片的加号是否显示
   },
   onInput(event) {
     console.log(event);
@@ -29,6 +32,45 @@ Page({
   onBlur() {
     this.setData({
       footerBottom:0
+    })
+  },
+  //选择图片
+  onChooseImage() {
+    let max = MAX_IMG_NUM - this.data.images.length
+    wx.chooseImage({
+      count: max,
+      sizeType:['compressed','original'],
+      sourceType:['album','camera'],
+      success:(res) => {
+        console.log(res);
+        this.setData({
+          images: this.data.images.concat(res.tempFilePaths)
+        })
+        //
+        max = MAX_IMG_NUM - this.data.images.length
+        this.setData({
+          selectPhoto: max <= 0 ? false : true
+        })
+      }
+    })
+  },
+  // 删除图片
+  onDelImage(event) {
+    this.data.images.splice(event.target.dataset.index, 1)
+    this.setData({
+      images: this.data.images
+    })
+    if(this.data.images.length == MAX_IMG_NUM -1) {
+      this.setData({
+        selectPhoto: true
+      })
+    }
+  },
+  // 预览图片
+  onPreviewImage(event) {
+    wx.previewImage({
+      urls: this.data.images,
+      current: event.target.dataset.imgsrc
     })
   },
   // 发布功能
