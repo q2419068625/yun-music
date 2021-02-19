@@ -76,6 +76,12 @@
           "pathName": "pages/blog/blog",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/blog-edit/blog-edit",
+          "pathName": "pages/blog-edit/blog-edit",
+          "query": "avatarUrl=\"https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83epZ7X1n0cCazPzic7GXjOVBdIvA53h8vabJib1086lRoYsLyoib804YvOcLYUb7K4LibEfL2xpBtd3EwQ/132\" &nickName:=\"三亩地\"",
+          "scene": null
         }
       ]
     }
