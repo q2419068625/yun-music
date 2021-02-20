@@ -1,6 +1,10 @@
  //输入文字最大的个数
 const MAX_WORDS_NUM = 140  
 const MAX_IMG_NUM = 9
+
+const db = wx.cloud.database()
+let content = ''
+let userInfo = {}
 Page({
 
   /**
@@ -21,6 +25,7 @@ Page({
     this.setData({
       wordsNum
     })
+    content = event.detail.value
   },
   onFocus(event) {
     // 模拟器获取键盘高度为0
@@ -75,6 +80,66 @@ Page({
   },
   // 发布功能
   send() {
+
+    if(content.trim() === '') {
+      wx.showModal({
+        title: '请输入内容',
+        content: ''
+      })
+      return
+    }
+    wx.showLoading({
+      title: '发布中',
+    })
+
+    let promiseArr = []
+    let fileIds = []
+
+    // 图片上传 
+    for(let i = 0, len = this.data.images.length; i < len; i++) {
+      let p =  new Promise((resolve, reject) => {
+        let item = this.data.images[i]
+        // 文件扩展名
+        let suffix = /\.\w+$/.exec(item)[0]
+        wx.cloud.uploadFile({
+          cloudPath: 'blog/' + Date.now() + '-' + Math.random() * 10000 + suffix,
+          filePath: item,
+          success: (res) => {
+            console.log(res);
+            fileIds = fileIds.concat(res.fileID)
+            resolve()
+          },
+          fail:(err) => {
+            console.log(err);
+            reject()
+          }
+        })
+      })
+      promiseArr.push(p)
+    }
+    //存入到云数据库
+    Promise.all(promiseArr).then(res => {
+      db.collection('blog').add({
+        data: {
+          ...userInfo,
+          content,
+          img: fileIds,
+          createTime: db.serverDate()  //服务的时间
+        }
+      }).then(res => {
+        wx.hideLoading()
+        wx.showToast({
+          title: '发布成功',
+        })
+        //返回博客页面
+        wx.navigateBack()
+      })
+    }).catch(err => {
+      wx.hideLoading()
+      wx.showToast({
+        title: '发布失败',
+      })
+    }) 
     
   },
 
@@ -83,6 +148,7 @@ Page({
    */
   onLoad: function (options) {
     console.log(options);
+    userInfo = options
   },
 
   /**
