@@ -90,6 +90,7 @@ Page({
     }
     wx.showLoading({
       title: '发布中',
+      mask: true
     })
 
     let promiseArr = []
@@ -131,8 +132,12 @@ Page({
         wx.showToast({
           title: '发布成功',
         })
-        //返回博客页面
+        //返回博客页面 并且刷新
         wx.navigateBack()
+        const pages = getCurrentPages()
+        // console.log(pages);
+        const prevPage = pages[0]
+        prevPage.onPullDownRefresh()
       })
     }).catch(err => {
       wx.hideLoading()
