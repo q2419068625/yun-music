@@ -1,4 +1,6 @@
 // pages/blog/blog.js
+// 查询关键字
+let keyWord = ''
 Page({
 
   /**
@@ -45,6 +47,14 @@ Page({
     })
   },
 
+  onSearch(event) {
+    // console.log(event);
+    this.setData({
+      blogList: []
+    })
+    keyWord = event.detail.keyWord
+    this._loadBlogList(0)
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -60,6 +70,7 @@ Page({
     wx.cloud.callFunction({
       name:'blog',
       data: {
+        keyWord,
         start,
         $url: 'list',
         count: 10
@@ -78,6 +89,9 @@ Page({
       url: '../../pages/blog-comment/blog-comment?blogId=' + event.target.dataset.blogid,
     })
   },
+
+  
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

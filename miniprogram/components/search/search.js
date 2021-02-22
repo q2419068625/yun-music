@@ -1,4 +1,5 @@
 // components/search/search.js
+let keyWord = ''
 Component({
   /**
    * 组件的属性列表
@@ -24,6 +25,13 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    onInput(event) {
+      keyWord = event.detail.value
+    },
+    onSearch() {
+      this.triggerEvent('search', {
+        keyWord
+      })
+    }
   }
 })
