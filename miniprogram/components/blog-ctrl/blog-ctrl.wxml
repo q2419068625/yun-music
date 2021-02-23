@@ -21,7 +21,7 @@ bind:loginfail="onLoginFail"
 modalShow="{{modalShow}}"
 >
   <view slot="modal-content">
-    <textarea name="content" class="comment-content" placeholder="写评论" value="{{content}}" fixed="true"></textarea>
-    <button class="send" form-type="submit">发送</button>
+    <textarea name="content" bindinput="onInput" class="comment-content" placeholder="写评论" value="{{content}}" fixed="true"></textarea>
+    <button class="send" bindtap="onSend">发送</button>
   </view>
 </x-bottom-modal>
