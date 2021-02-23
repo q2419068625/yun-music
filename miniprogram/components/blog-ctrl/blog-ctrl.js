@@ -27,25 +27,36 @@ Component({
   methods: {
     onComment() {
       // 判断用户是否授权
-      wx.getSetting({
-        success:(res) => {
-          if(res.authSetting['scope.userInfo']){
-            wx.getUserInfo({
-              success:(res) => {
-                userInfo = res.userInfo
-                // 显示评论弹出层
+       // 推送模板消息
+       wx.requestSubscribeMessage({
+        tmplIds: ['VrZKkwbq6JPSee-A-zQwp_crdNfKQSJdphR0cM16gG8'],
+        success: (res) => {
+          console.log(res);
+          wx.getSetting({
+            withSubscriptions: true,
+            success:(res) => {
+              console.log(res);
+              if(res.authSetting['scope.userInfo']){
+                wx.getUserInfo({
+                  success:(res) => {
+                    userInfo = res.userInfo
+                    // 显示评论弹出层
+                    this.setData({
+                      modalShow: true
+                    })
+                    
+                  }
+                })
+              } else {
                 this.setData({
-                  modalShow: true
+                  loginShow: true
                 })
               }
-            })
-          } else {
-            this.setData({
-              loginShow: true
-            })
-          }
+            }
+          })
         }
       })
+      
     },
 
     onLoginSuccess(event) {
@@ -65,9 +76,12 @@ Component({
         content: ''
       })
     },
-    onSend() {
+    onSend(event) {
+      console.log(event);
       // 评论信息插入数据库
+      // let formId = event.detail.formId
       let content = this.data.content
+      // console.log(content,'123');
       if(content.trim() == '') {
         wx.showModal({
           title: '评论内容不能为空',
@@ -88,6 +102,18 @@ Component({
           avatarUrl: userInfo.avatarUrl
         }
       }).then(res => {
+
+        // 推送模板消息
+        wx.cloud.callFunction({
+          name: 'sendMessage',
+          data: {
+            content,
+            blogId: this.properties.blogId,
+          }
+        }).then(res => {
+          console.log(res);
+        })
+
         wx.hideLoading()
         wx.showToast({
           title: '评论成功',
@@ -102,6 +128,7 @@ Component({
 
     },
     onInput(event) {
+      // console.log(event);
       this.setData({
         content: event.detail.value
       })
