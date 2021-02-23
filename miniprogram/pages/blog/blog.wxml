@@ -19,6 +19,7 @@
       </x-blog-card>
       <x-blog-ctrl
       blogId="{{item._id}}"
+      blog="{{item}}"
       iconfont="iconfont"
       icon-pinglun="icon-pinglun"
       icon-fenxiang="icon-fenxiang"

@@ -6,7 +6,8 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    blogId: String
+    blogId: String,
+    blog: Object
   },
   externalClasses:['icon-fenxiang', 'icon-pinglun', 'iconfont'],
 
