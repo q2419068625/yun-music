@@ -36,5 +36,5 @@ Component({
         current: ds.imgsrc
       })
     }
-  }
+  },
 })

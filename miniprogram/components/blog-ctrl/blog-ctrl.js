@@ -96,6 +96,8 @@ Component({
           modalShow: false,
           content: ''
         })
+        // 父元素刷新评论页面
+        this.triggerEvent('refreshCommentList')
       })
 
     },
