@@ -7,7 +7,10 @@
     "pages/player/player",
     "pages/blog-edit/blog-edit",
     "pages/blog-comment/blog-comment",
+    "pages/profile-playhistory/profile-playhistory",
+    "pages/profile-bloghistory/profile-bloghistory",
     "components/playlist/playlist"
+
   ],
   "requiredBackgroundModes": ["audio", "location"],
   "window": {
